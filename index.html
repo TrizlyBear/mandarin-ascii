@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        .urlinput{
+            margin-top: 30px !important;
+            display: block;
+            margin: 10px;
+            width: 30vh;
+        }
+        .contrast{
+            display: block;
+            margin: 10px;
+            width: 30vh;
+        }
+        button{
+            margin: 10px;
+            width: 30vh;
+        }
+        .inputs{
+            width: 30vh;
+            
+            margin: 0 auto;
+        }
+        .output{
+            font-size: 0.4vw;
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="inputs">
+        <input placeholder="URL*" id="urlinput" class="urlinput">
+        <input placeholder="Contrast" type="number" id="contrastinput" class="contrast">
+        <button onclick="send()">Transform</button>
+    </div>
+    
+    <div id="output" class="output">
+
+    </div>
+    <script>
+        var acontrast = 0
+        function send(){
+            if(document.getElementById('contrastinput').value > 1){
+                acontrast = 1
+            } else if(document.getElementById('contrastinput').value < -1){
+                acontrast = -1
+            } else {
+                acontrast = document.getElementById('contrastinput').value
+            }
+            
+            
+            
+            axios({url:'http://localhost:6969/img',
+            method:'post',
+            
+            data:{iurl:document.getElementById('urlinput').value, contrast:acontrast}
+        }).then(res => {
+            document.getElementById('output').innerHTML = res.data;
+        });
+    
+        }
+    </script>
+</body>
+</html>
