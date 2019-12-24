@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && node index.js"
+    "start": "node index.js",
+    "build":"npm install",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
