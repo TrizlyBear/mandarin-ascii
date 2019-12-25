@@ -48,7 +48,7 @@ app.post('/img', function(req, res) {
     
 function transform(imgurl, contrast) {
         j.read(imgurl, (err, pic) => {
-        pic.resize(100,j.AUTO)
+        pic.resize(j.AUTO, 100)
         if (contrast) {
             try {
                 pic.contrast(parseInt(contrast));   
