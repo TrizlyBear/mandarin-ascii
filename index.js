@@ -48,7 +48,12 @@ app.post('/img', function(req, res) {
     
 function transform(imgurl, contrast) {
         j.read(imgurl, (err, pic) => {
-        pic.resize(j.AUTO, 100)
+            try{
+pic.resize(j.AUTO, 100)
+} catch(e){
+res.send("An error ocured!")
+}
+        
         if (contrast) {
             try {
                 pic.contrast(parseInt(contrast));   
